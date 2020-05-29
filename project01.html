@@ -1,0 +1,108 @@
+<!SOCTYPE html>
+<head>
+    <title>random name</title>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #7298d4;
+        }
+        .myDiv {
+            position: absolute;
+            top: 42%;
+            left: 42%;
+            justify-self: center;
+            align-self: center;
+            background: #198765;
+            width: 200px;
+            height:200px;
+            border: 5px solid black;
+            border-radius: 50%;
+                  }
+        .ticks {
+          position: absolute;
+            top:50%;
+            
+            background: black;
+            width: 90px;
+            border:3px solid black;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+        }
+        .digital {
+            left:39%;
+            top:25%;
+            position: absolute;
+            width: 300px;
+            height: 50px;
+            background: #12363d;
+            color:white;
+            padding:20px;
+        }
+        .second {
+            width : 90px;
+            border : 2px solid red;
+        }
+        .minute {
+            width: 90px;
+            border: 3px solid blue;
+        }
+    
+    </style>
+
+
+</head>
+<body>
+
+
+<div class="myDiv">
+    <div class="ticks hour"></div>
+    <div class="ticks minute"></div>
+    <div class="ticks second"></div>
+    </div>
+<div class="digital"></div>
+<script>
+    const secondHand = document.querySelector(".second");
+    const minuteHand = document.querySelector(".minute");
+    const hourHand = document.querySelector(".hour");
+    
+   // console.log(secondHand);
+    function setTime() {
+        const now = new Date();
+       
+        const secs = now.getSeconds();
+        const secondDegrees = ((secs/60)*360) +90;
+        secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+        
+        const mins= now.getMinutes();
+        const minuteDrgrees =  ((mins/60)*360) +90;
+        minuteHand.style.transform = `rotate(${minuteDrgrees}deg)`;
+        
+        const hours = now.getHours();
+const hourDegrees = 0.5 * (hours * 60 + mins) + 90;
+hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+        
+        
+        
+       
+    }
+    
+    setInterval(setTime,1000);
+    
+   
+    
+    function digitalDate() {
+        const digital = document.querySelector(".digital");
+        console.log(digital);
+        const time = new Date();
+        
+        digital.innerHTML = `${time}`;
+    }
+    digitalDate();
+    
+    </script>
+
+
+    
+</body>
